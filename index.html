@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Data Table</title>
+</head>
+<body>
+
+<div>
+  <label for="search-date">Search by Date: </label>
+  <input type="date" id="search-date">
+  <button onclick="searchByDate()">Search</button>
+</div>
+
+<table id="data-table">
+  <thead>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<div class="popup" id="popup-container"></div>
+
+<script>
+  const jsonData = [
+    {
+      "date": "2022-01-01",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "BatchNumber",
+      "action": "update",
+      "values": [
+        {
+          "Field": "batch_number",
+          "old_value": "411",
+          "new_value": "4"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-02",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    }
+    ,
+    {
+      "date": "2022-01-03",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-04",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-05",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-06",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-07",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-08",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-09",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-10",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-11",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-12",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-13",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-14",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-15",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-16",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-17",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-18",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-19",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-20",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-21",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-22",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-23",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    },
+    {
+      "date": "2022-01-24",
+      "user_id": 99,
+      "user_name": "Mariyam Khan",
+      "category": "Toneop Care",
+      "sub_category": "HowToUse",
+      "action": "update",
+      "values": [
+        {
+          "Field": "description",
+          "old_value": "Witness your enhanced immunity protect your body against all health issues!",
+          "new_value": "Witness your enhanced immunity protect your body against all health issues!{{"
+        },
+        {
+          "Field": "sequence",
+          "old_value": "1",
+          "new_value": "12"
+        }
+      ]
+    }
+  ];
+
+  // Get the table element and its header and body
+  const table = document.getElementById('data-table');
+  const tableHeader = table.getElementsByTagName('thead')[0];
+  const tableBody = table.getElementsByTagName('tbody')[0];
+
+  // Extract main keys for the table header
+  const mainKeys = Object.keys(jsonData[0]);
+
+  // Create table header with main keys
+  const headerRow = tableHeader.insertRow();
+  // Add a column for S.no
+  const snoCell = document.createElement('th');
+  snoCell.textContent = 'S.no';
+  headerRow.appendChild(snoCell);
+
+  mainKeys.forEach(key => {
+    const th = document.createElement('th');
+    th.textContent = key;
+    headerRow.appendChild(th);
+  });
+
+  // Iterate through the JSON data and create table rows
+  jsonData.forEach((item, index) => {
+    const row = tableBody.insertRow();
+    // Add S.no to each row
+    const snoCell = row.insertCell();
+    snoCell.textContent = index + 1;
+
+    mainKeys.forEach(key => {
+      const cell = row.insertCell();
+      const value = item[key];
+
+      // Check if the value is an object and format it as a nested table
+      if (key === "values" && Array.isArray(value)) {
+        const plusButton = document.createElement('button');
+        plusButton.textContent = '+';
+        plusButton.addEventListener('click', () => {
+          const popupContainer = document.getElementById('popup-container');
+          popupContainer.innerHTML = '';
+
+          // Iterate through the elements of the "values" array
+          value.forEach((element, index) => {
+            const innerTable = document.createElement('table');
+            Object.entries(element).forEach(([innerKey, innerValue]) => {
+              const innerRow = innerTable.insertRow();
+              innerRow.insertCell().textContent = innerKey;
+
+              // Check if the inner value is an object and format it as a nested table
+              if (typeof innerValue === 'object' && innerValue !== null) {
+                const subInnerTable = document.createElement('table');
+                Object.entries(innerValue).forEach(([subInnerKey, subInnerValue]) => {
+                  const subInnerRow = subInnerTable.insertRow();
+                  subInnerRow.insertCell().textContent = subInnerKey;
+                  subInnerRow.insertCell().textContent = JSON.stringify(subInnerValue, null, 2);
+                });
+                innerRow.insertCell().appendChild(subInnerTable);
+              } else {
+                innerRow.insertCell().textContent = JSON.stringify(innerValue, null, 2);
+              }
+            });
+
+            // Display the elements of the array in the popup
+            popupContainer.appendChild(innerTable);
+          });
+
+          // Add an OK button to close the popup
+          const okButton = document.createElement('button');
+          okButton.textContent = 'OK';
+          okButton.addEventListener('click', () => {
+            popupContainer.style.display = 'none';
+          });
+
+          popupContainer.appendChild(okButton);
+
+          // Display the popup
+          popupContainer.style.display = 'block';
+        });
+
+        cell.appendChild(plusButton);
+      } else {
+        cell.textContent = JSON.stringify(value, null, 2);
+      }
+    });
+  });
+
+  // Search function to filter data based on the entered date
+  function searchByDate() {
+    const searchDateInput = document.getElementById('search-date');
+    const searchDate = searchDateInput.value;
+
+    // Filter the JSON data based on the entered date
+    const filteredData = jsonData.filter(item => item.date === searchDate);
+
+    // Clear the table body
+    tableBody.innerHTML = '';
+
+    // Display the filtered rows in the table
+    filteredData.forEach((item, index) => {
+      const row = tableBody.insertRow();
+      const snoCell = row.insertCell();
+      snoCell.textContent = index + 1;
+
+      mainKeys.forEach(key => {
+        const cell = row.insertCell();
+        const value = item[key];
+
+        // Check if the value is an object and format it as a nested table
+        if (key === "values" && Array.isArray(value)) {
+          const plusButton = document.createElement('button');
+          plusButton.textContent = '+';
+          plusButton.addEventListener('click', () => {
+            const popupContainer = document.getElementById('popup-container');
+            popupContainer.innerHTML = '';
+
+            // Iterate through the elements of the "values" array
+            value.forEach((element, index) => {
+              const innerTable = document.createElement('table');
+              Object.entries(element).forEach(([innerKey, innerValue]) => {
+                const innerRow = innerTable.insertRow();
+                innerRow.insertCell().textContent = innerKey;
+
+                // Check if the inner value is an object and format it as a nested table
+                if (typeof innerValue === 'object' && innerValue !== null) {
+                  const subInnerTable = document.createElement('table');
+                  Object.entries(innerValue).forEach(([subInnerKey, subInnerValue]) => {
+                    const subInnerRow = subInnerTable.insertRow();
+                    subInnerRow.insertCell().textContent = subInnerKey;
+                    subInnerRow.insertCell().textContent = JSON.stringify(subInnerValue, null, 2);
+                  });
+                  innerRow.insertCell().appendChild(subInnerTable);
+                } else {
+                  innerRow.insertCell().textContent = JSON.stringify(innerValue, null, 2);
+                }
+              });
+
+              // Display the elements of the array in the popup
+              popupContainer.appendChild(innerTable);
+            });
+
+            // Add an OK button to close the popup
+            const okButton = document.createElement('button');
+            okButton.textContent = 'OK';
+            okButton.addEventListener('click', () => {
+              popupContainer.style.display = 'none';
+            });
+
+            popupContainer.appendChild(okButton);
+
+            // Display the popup
+            popupContainer.style.display = 'block';
+          });
+
+          cell.appendChild(plusButton);
+        } else {
+          cell.textContent = JSON.stringify(value, null, 2);
+        }
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
